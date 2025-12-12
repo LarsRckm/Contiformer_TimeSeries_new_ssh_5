@@ -315,7 +315,7 @@ class ContiFormer(nn.Module):
         self.__output_size = d_model
         self.__hidden_size = d_model
 
-    def forward(self, x, is_observed, t, mask=None):
+    def forward(self, x, is_observed, t=None, mask=None):
         if t is None:   # default to regular time series
             t = torch.linspace(0, 1, x.shape[1]).to(x.device)
             t = t.unsqueeze(0).repeat(x.shape[0], 1)

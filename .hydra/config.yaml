@@ -48,7 +48,7 @@ y_lim_low: 10
 y_lim_high: 10000
 train_count: 100
 val_count: 1
-number_x_values: 100
+number_x_values: 1000
 batch_size: 10
 random_number_range_distribution: norm
 random_number_range_mean: 0

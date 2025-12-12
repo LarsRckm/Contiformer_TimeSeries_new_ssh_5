@@ -416,7 +416,7 @@ def train_one_epoch(model, optimizer, train_loader, device, epoch, loss_meter, c
         groundTruth = batch["groundTruth"].unsqueeze(-1).to(device)
         timeSeries_noisy_original = batch["noisy_TimeSeries"].to(device)
         mask = batch["mask"].to(device)
-        time_stamps_original = batch["time_stamps"].to(device)
+        # time_stamps_original = batch["time_stamps"].to(device)
 
         # mask_indices = torch.where(mask[0] == True)[0]
         # timeSeries_noisy = timeSeries_noisy_original[:, mask_indices].unsqueeze(-1)
@@ -424,15 +424,15 @@ def train_one_epoch(model, optimizer, train_loader, device, epoch, loss_meter, c
         # time_stamps = time_stamps.reshape(1, -1, 1).repeat(timeSeries_noisy.size(0), 1, 1)
         # timeSeries_noisy = torch.cat((timeSeries_noisy.to(device), time_stamps), dim=-1).float()
 
-        out = model(timeSeries_noisy_original, mask, time_stamps_original)
-        pz0_mean = pz0_logvar = None
+        out = model(timeSeries_noisy_original.unsqueeze(-1), mask)
+        # pz0_mean = pz0_logvar = None
         out, idx = out
 
         # Use loss weights from config
         loss, l1_loss, gradient_loss = model.calculate_loss(
             out,
             groundTruth,
-            time_interval=time_stamps_original[0],
+            time_interval=torch.linspace(0, 1, steps=cfg.number_x_values),
             weight_l1=getattr(cfg, 'weight_l1', 1.0),
             weight_grad=getattr(cfg, 'weight_grad', 0.5),
             weight_smooth=getattr(cfg, 'weight_smooth', 0.1),

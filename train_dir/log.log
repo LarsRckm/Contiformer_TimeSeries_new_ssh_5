@@ -21,3 +21,23 @@
 [2025-12-12 10:20:47,495][./train_dir\log][INFO] - Using cosine learning rate scheduler
 [2025-12-12 10:20:50,190][./train_dir\log][INFO] - Model: Contiformer | Total params: 460,737 | Trainable: 460,737
 [2025-12-12 10:21:03,208][./train_dir\log][INFO] - Architecture: d_model=64, n_layers=3, n_head=4
+[2025-12-12 11:09:09,257][./train_dir\log][INFO] - Using cosine learning rate scheduler
+[2025-12-12 11:09:12,923][./train_dir\log][INFO] - Model: Contiformer | Total params: 460,737 | Trainable: 460,737
+[2025-12-12 11:09:12,924][./train_dir\log][INFO] - Architecture: d_model=64, n_layers=3, n_head=4
+[2025-12-12 11:09:12,925][./train_dir\log][INFO] - Early stopping enabled with patience=200, min_delta=0.0001
+[2025-12-12 11:10:22,770][./train_dir\log][INFO] - Using cosine learning rate scheduler
+[2025-12-12 11:10:22,776][./train_dir\log][INFO] - Model: Contiformer | Total params: 460,737 | Trainable: 460,737
+[2025-12-12 11:10:22,777][./train_dir\log][INFO] - Architecture: d_model=64, n_layers=3, n_head=4
+[2025-12-12 11:10:22,777][./train_dir\log][INFO] - Early stopping enabled with patience=200, min_delta=0.0001
+[2025-12-12 11:11:24,697][./train_dir\log][INFO] - Using cosine learning rate scheduler
+[2025-12-12 11:11:24,699][./train_dir\log][INFO] - Model: Contiformer | Total params: 460,737 | Trainable: 460,737
+[2025-12-12 11:11:24,700][./train_dir\log][INFO] - Architecture: d_model=64, n_layers=3, n_head=4
+[2025-12-12 11:11:24,701][./train_dir\log][INFO] - Early stopping enabled with patience=200, min_delta=0.0001
+[2025-12-12 11:16:02,765][./train_dir\log][INFO] - Using cosine learning rate scheduler
+[2025-12-12 11:16:02,769][./train_dir\log][INFO] - Model: Contiformer | Total params: 460,737 | Trainable: 460,737
+[2025-12-12 11:16:02,769][./train_dir\log][INFO] - Architecture: d_model=64, n_layers=3, n_head=4
+[2025-12-12 11:16:02,769][./train_dir\log][INFO] - Early stopping enabled with patience=200, min_delta=0.0001
+[2025-12-12 11:16:34,803][./train_dir\log][INFO] - Using cosine learning rate scheduler
+[2025-12-12 11:16:34,809][./train_dir\log][INFO] - Model: Contiformer | Total params: 460,737 | Trainable: 460,737
+[2025-12-12 11:16:34,809][./train_dir\log][INFO] - Architecture: d_model=64, n_layers=3, n_head=4
+[2025-12-12 11:16:34,809][./train_dir\log][INFO] - Early stopping enabled with patience=200, min_delta=0.0001
