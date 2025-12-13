@@ -328,6 +328,7 @@ class ContiFormer(nn.Module):
 
         #type embedding
         type_emb = self.typeEmbedding(is_observed)
+        type_emb = type_emb * is_observed.unsqueeze(-1)
         
         # print(x[0,:,:])
         # print(value_emb[0,:,:])

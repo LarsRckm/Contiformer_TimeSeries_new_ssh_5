@@ -48,11 +48,11 @@ class TimeSeriesDataset_Interpolation_roundedInput(Dataset):
         mask = remove_parts_of_graph_encoder_contiformer(self.x_values, self.mask_size, self.offset)
         # print((mask == 0).sum())
         mask = torch.tensor(mask, dtype=torch.bool)
-        mask = ~mask
+        # mask = ~mask
         # print((mask == True).sum())
 
-        #mask index 1 -> keep
-        #mask index 0 -> remove        
+        #mask index 0 -> keep
+        #mask index 1 -> remove        
         # mask_indices = np.where(mask == 1)[0]
 
         # parameter for min-max scaling (avoid degenerate range)

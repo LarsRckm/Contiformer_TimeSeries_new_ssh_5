@@ -872,3 +872,19 @@
 [2025-12-13 03:27:52,872][./train_dir/log][INFO] - Validation: Epoch: 388, MAE: 43.6804, RMSE: 49.9288, MAPE: 162.40%
 [2025-12-13 03:27:52,872][./train_dir/log][INFO] - Early stopping triggered at epoch 388. Best MAE: 0.5770
 [2025-12-13 03:27:52,872][./train_dir/log][INFO] - Training completed. Best validation MAE: 0.5770
+[2025-12-13 22:31:26,474][./train_dir\log][INFO] - Using cosine learning rate scheduler
+[2025-12-13 22:31:26,484][./train_dir\log][INFO] - Model: Contiformer | Total params: 217,921 | Trainable: 217,921
+[2025-12-13 22:31:26,485][./train_dir\log][INFO] - Architecture: d_model=64, n_layers=4, n_head=4
+[2025-12-13 22:31:26,486][./train_dir\log][INFO] - Early stopping enabled with patience=200, min_delta=0.0001
+[2025-12-13 22:33:30,519][./train_dir\log][INFO] - Using cosine learning rate scheduler
+[2025-12-13 22:33:30,526][./train_dir\log][INFO] - Model: Contiformer | Total params: 217,921 | Trainable: 217,921
+[2025-12-13 22:33:30,527][./train_dir\log][INFO] - Architecture: d_model=64, n_layers=4, n_head=4
+[2025-12-13 22:33:30,528][./train_dir\log][INFO] - Early stopping enabled with patience=200, min_delta=0.0001
+[2025-12-13 22:35:50,847][./train_dir\log][INFO] - Using cosine learning rate scheduler
+[2025-12-13 22:35:50,850][./train_dir\log][INFO] - Model: Contiformer | Total params: 217,921 | Trainable: 217,921
+[2025-12-13 22:35:50,851][./train_dir\log][INFO] - Architecture: d_model=64, n_layers=4, n_head=4
+[2025-12-13 22:35:50,852][./train_dir\log][INFO] - Early stopping enabled with patience=200, min_delta=0.0001
+[2025-12-13 22:37:10,386][./train_dir\log][INFO] - Using cosine learning rate scheduler
+[2025-12-13 22:37:10,393][./train_dir\log][INFO] - Model: Contiformer | Total params: 217,921 | Trainable: 217,921
+[2025-12-13 22:37:10,394][./train_dir\log][INFO] - Architecture: d_model=64, n_layers=4, n_head=4
+[2025-12-13 22:37:10,395][./train_dir\log][INFO] - Early stopping enabled with patience=200, min_delta=0.0001

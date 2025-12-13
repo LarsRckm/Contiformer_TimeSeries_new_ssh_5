@@ -11,12 +11,12 @@ log_step: 50
 seed: 42
 val_plot_freq: 10
 disable_tqdm: false
-d_model: 16
-d_inner: 32
+d_model: 64
+d_inner: 256
 n_layers: 4
 n_head: 4
-d_k: 4
-d_v: 4
+d_k: 16
+d_v: 16
 actfn: softplus
 layer_type_ode: concat
 zero_init_ode: true
@@ -46,7 +46,7 @@ patience: 200
 min_delta: 0.0001
 y_lim_low: 10
 y_lim_high: 10000
-train_count: 100
+train_count: 1000
 val_count: 1
 number_x_values: 100
 batch_size: 10
