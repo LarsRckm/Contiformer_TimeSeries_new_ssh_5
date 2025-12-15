@@ -138,13 +138,17 @@ class ScaledDotProductAttention(nn.Module):
 
         self.temperature = temperature
         self.dropout = nn.Dropout(attn_dropout)
+        self.g = nn.Sequential(nn.Linear(1,32), nn.GELU(), nn.Linear(32,1))
 
     def forward(self, q, k, v, mask=None):
         # if q is ODELinear, attn = (q.transpose(2, 3).flip(dims=[-2]) / self.temperature * k).sum(dim=-1).sum(dim=-1)
-        attn = (q / self.temperature * k).sum(dim=-1).sum(dim=-1)
+        attn = (q / self.temperature * k).sum(dim=-1)
+        attn = torch.sigmoid(self.g(attn.unsqueeze(-1))).squeeze(-1)        
+        attn = attn.sum(dim=-1)
 
         if mask is not None:
             attn = attn.masked_fill(mask, -1e9)
+
 
         attn = self.dropout(F.softmax(attn, dim=-1))
 
@@ -364,20 +368,34 @@ class ContiFormer(nn.Module):
 
         # Gradient matching loss
         if time_interval is not None and len(time_interval) > 1:
+            share = 0.15
+            data_points_count = len(time_interval)
+            extra_data_points_count_low = data_points_count * share
+            extra_data_points_count_high = data_points_count * (1-share)
             dt = (time_interval[1:] - time_interval[:-1]).unsqueeze(-1)
             dt = torch.clamp(dt, min=1e-6)  # Avoid division by zero
             pred_grad = (pred_x[:, 1:] - pred_x[:, :-1]) / dt
             target_grad = (target_x[:, 1:] - target_x[:, :-1]) / dt
-            num = torch.nn.functional.mse_loss(pred_grad, target_grad, reduction="mean")
-            denom = torch.mean(target_grad ** 2) + 1e-8
+            num = torch.mean(torch.abs(pred_grad - target_grad))
+            num2 = torch.mean(torch.abs(pred_grad[:,:extra_data_points_count_low] - target_grad[:,:extra_data_points_count_low]))
+            num3 = torch.mean(torch.abs(pred_grad[:,extra_data_points_count_high:] - target_grad[:,extra_data_points_count_high:]))     
+            denom = torch.mean(torch.abs(target_grad) + 1e-8)
+            denom2 = torch.mean(torch.abs(target_grad[:,:extra_data_points_count_low]) + 1e-8)
+            denom3 = torch.mean(torch.abs(target_grad[:,extra_data_points_count_high:]) + 1e-8)
             gradient_loss = num / denom
+            extra_gradient_loss_low = num2 / denom2
+            extra_gradient_loss_high = num3 / denom3
+            gradient_loss = gradient_loss + 0.1 * (extra_gradient_loss_low + extra_gradient_loss_high)
         else:
             gradient_loss = torch.tensor(0.0, device=pred_x.device)
 
         # Smoothness regularization (penalize 2nd derivative for denoising)
         if pred_x.shape[1] > 2:
-            second_deriv = pred_x[:, 2:] - 2 * pred_x[:, 1:-1] + pred_x[:, :-2]
-            smooth_loss = torch.mean(second_deriv ** 2)
+            second_deriv_prediction = pred_x[:, 2:] - 2 * pred_x[:, 1:-1] + pred_x[:, :-2]
+            second_deriv_target = pred_x[:, 2:] - 2 * pred_x[:, 1:-1] + pred_x[:, :-2]
+            num = torch.mean(torch.abs(second_deriv_prediction-second_deriv_target))
+            denom = torch.mean(torch.abs(second_deriv_target) + 1e-8)   
+            smooth_loss = num / denom
         else:
             smooth_loss = torch.tensor(0.0, device=pred_x.device)
 

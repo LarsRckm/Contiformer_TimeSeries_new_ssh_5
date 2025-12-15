@@ -36,7 +36,7 @@ normalize_before: false  # use pre-norm transformer layers
 
 # ==================== ODE Solver Settings ====================
 atol: 1e-2  # absolute tolerance for ODE solver
-rtol: 1e-2  # relative tolerance for ODE solver
+rtol: 1e-4  # relative tolerance for ODE solver
 itol_ode: 1e-2
 method: euler  # ODE solver integration method: euler, rk4, dopri5
 dropout: 0.1  # dropout probability in encoder
@@ -55,12 +55,12 @@ min_lr: 0.0001  # minimum learning rate
 
 # ==================== Loss Function Weights ====================
 weight_l1: 1.0  # weight for L1/smooth L1 loss
-weight_grad: 0.01  # weight for gradient matching loss
-weight_smooth: 0.0001  # weight for smoothness regularization
+weight_grad: 0.1  # weight for gradient matching loss
+weight_smooth: 0.05  # weight for smoothness regularization
 use_frequency_loss: false  # add frequency domain loss for denoising
 
 # ==================== Early Stopping ====================
-early_stopping: true  # enable early stopping
+early_stopping: false  # enable early stopping
 patience: 200  # epochs to wait before stopping
 min_delta: 0.0001  # minimum improvement to reset patience
 
